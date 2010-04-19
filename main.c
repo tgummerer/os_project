@@ -5,9 +5,11 @@
 #include <sys/wait.h>
 #include "child.h"
 
+#define MAX_COMMAND_LENGTH 256
+
 int main (int args, char ** argv)
 {
-  char command [256];
+  char command [MAX_COMMAND_LENGTH];
   pid_t pid;
   
   // Loop (nearly) forever
@@ -15,8 +17,7 @@ int main (int args, char ** argv)
     printf("$ ");
     //command = "";
     // Read a command from the console
-    scanf("%s", command);
-    printf ("__%s__", command);
+    fgets(command, MAX_COMMAND_LENGTH, stdin);
     // exit, if the command is exit
     if (strcmp ("exit", command) == 0) {
       break;
@@ -24,12 +25,12 @@ int main (int args, char ** argv)
     else {
       // fork to execute new program
       pid = fork ();
+      printf("%i", pid);
       if (pid < 0) {
 	printf("Fork failed, program exiting\n");
 	break;
 	
       } else if (pid == 0) {
-	// execute child method in child.c
         child (command);
 	exit(1); // end the child
       } else {
