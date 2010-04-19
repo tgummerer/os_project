@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include "child.h"
+#include "parent.h"
 
 #define MAX_COMMAND_LENGTH 256
 
@@ -31,12 +32,12 @@ int main (int args, char ** argv)
 	break;
 	
       } else if (pid == 0) {
+	// Child in child.c
         child (command);
 	exit(1); // end the child
       } else {
-	// parent
-	wait (NULL);
-	printf("parent\n");
+	// Parent in parent.c
+	parent();
       }
     }
   }
