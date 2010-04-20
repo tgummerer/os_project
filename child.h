@@ -1,7 +1,10 @@
 #ifndef __CHILD_H__
 #define __CHILD_H__
 
-void child (char command []);
+#include "const.h"
+
+int child (char command []);
+void explode_string (char command[], char exploded[2][MAX_COMMAND_LENGTH]);
 
 #endif
 
