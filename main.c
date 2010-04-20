@@ -41,7 +41,7 @@ int main (int args, char ** argv)
 	exit(1); // end the child
       } else {
 	// Parent in parent.c
-	parent();
+	parent(pid);
       }
     }
   }
