@@ -7,13 +7,16 @@
 #include "def.h"
 #include "child.h"
 #include "parent.h"
-
+#include "sighandlers.h"
 
 
 int main (int args, char ** argv)
 {
   char command [MAX_COMMAND_LENGTH];
   pid_t pid;
+
+  // Create Signalhandlers
+  sighandlers();
   
   // Loop (nearly) forever
   for (;;) {
