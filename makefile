@@ -1,7 +1,7 @@
-main: main.c child.o parent.o const.h
+main: main.c child.o parent.o def.h
 	gcc -o main main.c child.o parent.o
 
-child.o: child.c child.h const.h
+child.o: child.c child.h def.h
 	gcc -c -o child.o child.c
 
 parent.o: parent.c parent.h
