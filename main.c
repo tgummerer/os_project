@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-#include "const.h"
+#include "def.h"
 #include "child.h"
 #include "parent.h"
 

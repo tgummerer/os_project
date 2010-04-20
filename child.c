@@ -5,23 +5,23 @@
 
 
 #include "child.h"
-#include "const.h"
+#include "def.h"
 
 // command is closed by \0
 int child (char command []) {
-  char command_exploded [2][MAX_COMMAND_LENGTH]; // Command [0] and arguments[1]
+  char * command_exploded [MAX_COMMAND_LENGTH]; // Command [0] and arguments[1]
   
   // Separating command from arguments
   explode_string(command, command_exploded);
   
   // Execute command
-  execlp (command_exploded[0], command_exploded[0], NULL);
+  execlp (command_exploded[0], command_exploded[0], , NULL);
   perror("Command was not found ");
   return EXIT_FAILURE;
 }
 
 // Separates the command from the argument
-void explode_string (char command[], char exploded[2][MAX_COMMAND_LENGTH]) {
+void explode_string (char command[], char * exploded[MAX_COMMAND_LENGTH]) {
   int i = 0;
   for (; command[i] != ' ' && command[i] != '\0'; i++) {
     exploded[0][i] = command[i];
