@@ -15,8 +15,8 @@ int child (char command []) {
   explode_string(command, command_exploded);
   
   // Execute command
-  execlp (command_exploded[0], command_exploded[0], NULL);// command_exploded[1]);
-  perror("Command was not found\n");
+  execlp (command_exploded[0], command_exploded[0], NULL);
+  perror("Command was not found ");
   return EXIT_FAILURE;
 }
 
