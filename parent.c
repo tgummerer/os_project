@@ -11,9 +11,9 @@ void parent (pid_t pid)
   
   wait(&sval);
   if (WIFEXITED(sval) && WEXITSTATUS(sval) == 0) {
-    fprintf(stderr, "Child %d terminated normally, status: %d\n", pid, WEXITSTATUS(sval));
+    // Child exited normally
   } else {
-    fprintf(stderr, "Child %d died abnormally\n", pid);
+    // Child exited abnormally
   }
   
 }

@@ -17,3 +17,9 @@ void sigint_handler (int sig)
   signal(SIGINT, sigint_handler);
   printf("Foreground process killed\n");
 }
+
+void sigstop_handler (int sig)
+{
+  signal(SIGSTOP, sigstop_handler);
+  printf("Interrupt process temporarily\n");
+}

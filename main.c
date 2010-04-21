@@ -24,11 +24,9 @@ int main (int args, char ** argv)
     
     // Read a command from the console
     fgets(command, MAX_COMMAND_LENGTH, stdin);
-    // Remove trailing \n
-    sscanf(command, "%s", command);
     
     // exit, if the command is exit
-    if (strcmp ("exit", command) == 0) {
+    if (strcmp ("exit\n", command) == 0) {
       break;
     }
     else {
