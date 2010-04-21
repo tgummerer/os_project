@@ -7,13 +7,10 @@
 
 void parent (pid_t pid)
 {
-  int sval;
-  
-  wait(&sval);
-  if (WIFEXITED(sval) && WEXITSTATUS(sval) == 0) {
-    // Child exited normally
-  } else {
-    // Child exited abnormally
+  int status;
+  waitpid(pid, &status, WUNTRACED);
+  if (WIFSTOPPED(status)){
+    printf("Child interruptet temporarily");
   }
   
 }

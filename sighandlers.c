@@ -10,16 +10,21 @@ void sighandlers(void)
     perror("signal");
     exit(1);
   }
+
+  if (signal(SIGTSTP, sigtstp_handler) == SIG_ERR) {
+    perror("signal");
+    exit(1);
+  }
 }
+
+// Let the signals only take effect on the foreground process, and stop them befor they can take effect on the parrent process
 
 void sigint_handler (int sig)
 {
   signal(SIGINT, sigint_handler);
-  printf("Foreground process killed\n");
 }
 
-void sigstop_handler (int sig)
+void sigtstp_handler (int sig)
 {
-  signal(SIGSTOP, sigstop_handler);
-  printf("Interrupt process temporarily\n");
+  signal(SIGTSTP, sigtstp_handler);
 }
