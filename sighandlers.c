@@ -7,12 +7,12 @@
 void sighandlers(void)
 {
   if (signal(SIGINT, sigint_handler) == SIG_ERR) {
-    perror("signal");
+    perror("signal error");
     exit(1);
   }
 
   if (signal(SIGTSTP, sigtstp_handler) == SIG_ERR) {
-    perror("signal");
+    perror("signal error");
     exit(1);
   }
 }
