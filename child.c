@@ -6,7 +6,7 @@
 
 #include "child.h"
 #include "def.h"
-#include "parent.h" // for show_proc_list()
+#include "commands.h"
 
 char * argv[MAX_COMMAND_LENGTH];
 char * sep = " \t\n";
@@ -16,10 +16,13 @@ char * element;
 int child (char command []) {
   int argc=0;
 
-  if (strcmp("jobs\n", command) == 0) {
-    show_proc_list();
+  // Execute internal commands
+  if (strcmp("jobs\n", command) == 0 || strncmp("bg", command, 2) == 0 || strncmp("fg", command, 2) == 0)) {
+    internal (command);
     exit (0);
   }
+
+  
   
   element = strtok (command, sep);
   while (element != NULL)
