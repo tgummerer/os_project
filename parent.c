@@ -7,6 +7,7 @@
 #include "def.h"
 
 static int nr_proc = 0;
+static int running_proc;
 static t_proc list [1024]; // Array, to keep the processes running in background
 
 void parent (pid_t pid)
@@ -18,6 +19,9 @@ void parent (pid_t pid)
   element.proc_id = nr_proc;
   element.pid = pid;
   element.status = 0;
+
+  // Running process is process newly inserted
+  running_proc = nr_proc;
   
   // lollita
   list[nr_proc] = element;
@@ -27,10 +31,16 @@ void parent (pid_t pid)
   if (WIFSTOPPED(status)){
     // Child interrupted with ^Z
     printf("\nStopped: [%i]\n", list[nr_proc-1].proc_id);
-  } else if (WIFSIGNALED(status)) {
-    // Child killed
-  } else if (WIFSTOPPED(status)) {
-    // Child ended normally
+    list[running_proc].status = 2;
+  } else if (WIFEXITED(status) || WIFSIGNALED(status) || WIFSTOPPED(status)) {
+    // child stopped or killed, remove it from the list
+    // remove the process from the list completely if it's the last.
+    // Reorder would consume to much time
+    if (running_proc == nr_proc - 1) {
+      nr_proc--;
+    } else {
+      list[running_proc].status = -1;
+    }
   }  
 }
 

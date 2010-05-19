@@ -24,7 +24,7 @@ void background (char command[])
   // Run process in background
 }
 
-void foreground (char comman[])
+void foreground (char command[])
 {
   // Run process in foreground
 }

@@ -3,4 +3,7 @@
 
 void internal (char command[]);
 
+void background (char command[]);
+void foreground (char command[]);
+
 #endif
