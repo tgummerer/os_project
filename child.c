@@ -22,8 +22,6 @@ int child (char command []) {
     exit (0);
   }
 
-  
-  
   element = strtok (command, sep);
   while (element != NULL)
   {
