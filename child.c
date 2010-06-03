@@ -25,7 +25,7 @@ int child (char command []) {
   int argc=0;
 
   // Execute internal commands
-  if (strcmp("jobs\n", command) == 0 || strncmp("bg", command, 2) == 0 || strncmp("fg", command, 2) == 0) {
+  if (isInternal(command)) {
     internal (command);
     exit (0);
   }
@@ -45,3 +45,9 @@ int child (char command []) {
   return EXIT_FAILURE;
 }
 
+int isInternal (char command[]) {
+  if (strncmp("jobs", command, 4) == 0 || strncmp("bg", command, 2) == 0 || strncmp("fg", command, 2) == 0 || strncmp("in", command, 2) == 0 || strncmp("out", command, 3) == 0)
+    return 1;
+  
+  return 0;
+}
