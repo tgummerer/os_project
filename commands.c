@@ -14,7 +14,7 @@
 
 void internal (char command[])
 {
-  if (strcmp("jobs\n", command) == 0) {
+  if (strncmp("jobs", command, 4) == 0) {
     show_proc_list();  
   }
 
@@ -24,6 +24,14 @@ void internal (char command[])
 
   if (strncmp("fg", command, 2) == 0) {
     foreground(command);
+  }
+  
+  if (strncmp("in", command, 2) == 0) {
+    in (command);
+  }
+
+  if (strncmp("out", command, 3) == 0) {
+    out (command);
   }
 }
 
