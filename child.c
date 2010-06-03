@@ -16,13 +16,13 @@
 #include "def.h"
 #include "commands.h"
 
-char * argv[MAX_COMMAND_LENGTH];
+char * com [MAX_COMMAND_LENGTH];
 char * sep = " \t\n";
 char * element;
 
 // command is closed by \0
 int child (char command []) {
-  int argc=0;
+  int count=0;
 
   // Execute internal commands
   if (isInternal(command)) {
@@ -33,14 +33,14 @@ int child (char command []) {
   element = strtok (command, sep);
   while (element != NULL)
   {
-    argv[argc] = element;
-    argc++;
-    argv[argc]=NULL;
-    element = strtok(NULL, sep);
+    com[count] = element;
+    count++;
+    com[count] = NULL;
+    element = strtok (NULL, sep);
   }
   
   // Execute command
-  execvp (argv[0], argv);
+  execvp (com[0], com);
   perror("Command was not found");
   return EXIT_FAILURE;
 }
