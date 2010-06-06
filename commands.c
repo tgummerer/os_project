@@ -48,7 +48,34 @@ void foreground (char command[])
 
 void in (char command[])
 {
-  // Redirect stdin (works like |)
+  // Redirect stdin (works like <)
+  char * file;
+  char * sep = " \t\n";
+
+  // Throw the first piece away, its out.
+  strtok(command, sep);
+
+  // Second part is the file, from which the inputs should be taken
+  file = strtok(NULL, sep);
+  if ((fp = freopen (file, "r", stdin)) == NULL) {
+    perror("Could not open the specified file\n");
+    exit(-1);
+  }
+
+  char * element = strtok (NULL, sep);
+  int count = 0;
+  char * com [MAX_COMMAND_LENGTH];
+  while (element != NULL)
+  {
+    com[count] = element;
+    count++;
+    com[count] = NULL;
+    element = strtok (NULL, sep);
+  }
+  
+  // Execute command
+  execvp (com[0], com);  
+  perror("Command was not found");
 }
 
 void out (char command[])
