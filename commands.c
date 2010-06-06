@@ -55,6 +55,8 @@ void in (char command[])
   // Throw the first piece away, its out.
   strtok(command, sep);
 
+  FILE * fp;
+
   // Second part is the file, from which the inputs should be taken
   file = strtok(NULL, sep);
   if ((fp = freopen (file, "r", stdin)) == NULL) {
