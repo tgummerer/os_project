@@ -13,6 +13,8 @@
 #include "parent.h"
 #include "def.h"
 
+
+// Executes internal command, implemented directly in the code
 void internal (char command[])
 {
   if (strncmp("jobs", command, 4) == 0) {
@@ -36,16 +38,19 @@ void internal (char command[])
   }
 }
 
+// Runs a program in the background, or restarts a already running program in the background.
 void background (char command[])
 {
   // Run process in background
 }
 
+// Restarts a previously paused program in the foreground
 void foreground (char command[])
 {
   // Run process in foreground
 }
 
+// Replaces the standard input by a file. Syntax: in <input> <program + parameters>
 void in (char command[])
 {
   // Redirect stdin (works like <)
@@ -80,6 +85,7 @@ void in (char command[])
   perror("Command was not found");
 }
 
+// Redirects the standard output to a file. If the file already exists it will be overwritten. Syntax: out <output file> <program + parameters>
 void out (char command[])
 {
   char * file;

@@ -17,6 +17,7 @@ static int nr_proc = 0;
 static int running_proc;
 static t_proc list [1024]; // Array, to keep the processes running in background
 
+// The parent process, keeping a list of all the child process, in foreground background, and sleeping.
 void parent (pid_t pid)
 {
   int status;
@@ -51,6 +52,7 @@ void parent (pid_t pid)
   }  
 }
 
+// Shows the list of all background and sleeping processes.
 void show_proc_list (void)
 {
   int i = 0;

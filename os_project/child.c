@@ -19,7 +19,7 @@ char * com [MAX_COMMAND_LENGTH];
 char * sep = " \t\n";
 char * element;
 
-// command is closed by \0
+// Executes a command, as a child process
 int child (char command []) {
   int count=0;
 
@@ -44,6 +44,7 @@ int child (char command []) {
   return EXIT_FAILURE;
 }
 
+// Checks if the command is a internal command, which is executed by the shell directly
 int isInternal (char command[]) {
   if (strncmp("jobs", command, 4) == 0 || strncmp("bg", command, 2) == 0 || strncmp("fg", command, 2) == 0 || strncmp("in", command, 2) == 0 || strncmp("out", command, 3) == 0)
     return 1;
