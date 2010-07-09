@@ -15,10 +15,11 @@
 
 
 // Executes internal command, implemented directly in the code
+// TODO: get commands out of a array, or a configuration file as in child.c  
 void internal (char command[])
 {
     if (strncmp("jobs", command, 4) == 0) {
-        show_proc_list();  
+        // show_proc_list();  
     }
 
     if (strncmp("bg", command, 2) == 0) {
