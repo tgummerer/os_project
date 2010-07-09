@@ -47,9 +47,8 @@ int child (char command []) {
 // Checks if the command is a internal command, which is executed by the shell directly
 // TODO: rewrite to get the commands from a array, or a configuration file
 int isInternal (char command[]) {
-	if (strncmp("jobs", command, 4) == 0 || strncmp("bg", command, 2) == 0 || strncmp("fg", command, 2) == 0 || strncmp("cd", command, 2) || strncmp("in", command, 2) == 0 || strncmp("out", command, 3) == 0)
+	if (strncmp("jobs", command, 4) == 0 || strncmp("bg", command, 2) == 0 || strncmp("fg", command, 2) == 0 || strncmp("cd", command, 2) == 0 || strncmp("in", command, 2) == 0 || strncmp("out", command, 3) == 0)
 		return 1;
 
-	printf("not internal"); 
 	return 0;
 }
