@@ -9,6 +9,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// For directory functions
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
 #include "commands.h"
 #include "parent.h"
 #include "def.h"
@@ -18,6 +23,7 @@
 // TODO: get commands out of a array, or a configuration file as in child.c  
 void internal (char command[])
 {
+	printf("asdfasdf");
     if (strncmp("jobs", command, 4) == 0) {
         // show_proc_list();  
     }
@@ -29,13 +35,18 @@ void internal (char command[])
     if (strncmp("fg", command, 2) == 0) {
         foreground(command);
     }
+    printf("%s\n", command);
+	if (strncmp("cd", command, 2) == 0) {
+		printf("cd to somewhere\n");
+		cd(command);
+	}
 
     if (strncmp("in", command, 2) == 0) {
-        in (command);
+        in(command);
     }
 
     if (strncmp("out", command, 3) == 0) {
-        out (command);
+        out(command);
     }
 }
 
@@ -53,7 +64,17 @@ void foreground (char command[])
 
 void cd (char command[]) 
 {
-    // Change directory
+	char * directory;
+	char * sep = " \t\n";
+	// first part of the command has to be cd
+	strtok(command, sep);
+
+	// The first argument is the directory, to which should be changed
+	directory = strtok(NULL, sep);
+	
+	if (chdir(directory) != 0) {
+		printf("Changing directory failed.\n");
+	}
 }
 
 // Replaces the standard input by a file. Syntax: in <input> <program + parameters>
@@ -62,7 +83,6 @@ void in (char command[])
     // Redirect stdin (works like <)
     char * file;
     char * sep = " \t\n";
-
     // Throw the first piece away, its out.
     strtok(command, sep);
 

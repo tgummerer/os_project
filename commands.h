@@ -12,6 +12,7 @@ void internal (char command[]);
 
 void background (char command[]);
 void foreground (char command[]);
+void cd (char command[]);
 void in (char command[]);
 void out (char command[]);
 
