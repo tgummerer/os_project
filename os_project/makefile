@@ -1,17 +1,21 @@
-main: main.c child.o parent.o def.h sighandlers.o commands.o
-	gcc -o main main.c child.o parent.o sighandlers.o commands.o
+CC = gcc
+
+BIN = shell
+OBJS = main.o child.o parent.o sighandlers.o commands.o
+CFLAGS=
+
+$(BIN): $(OBJS)
+	$(CC) -o $(BIN) $(OBJS)
+
+main.o: main.c
 
 child.o: child.c child.h def.h
-	gcc -c -o child.o child.c
 
 parent.o: parent.c parent.h
-	gcc -c -o parent.o parent.c
 
 sighandlers.o: sighandlers.c sighandlers.h
-	gcc -c -o sighandlers.o sighandlers.c
 
 commands.o: commands.c commands.h
-	gcc -c -o commands.o commands.c
 
 clean:
-	rm main main_debug *.o
+	rm $(BIN) $(OBJS) *~
