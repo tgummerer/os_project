@@ -23,7 +23,6 @@
 // TODO: get commands out of a array, or a configuration file as in child.c  
 void internal (char command[])
 {
-	printf("asdfasdf");
     if (strncmp("jobs", command, 4) == 0) {
         // show_proc_list();  
     }
@@ -35,9 +34,8 @@ void internal (char command[])
     if (strncmp("fg", command, 2) == 0) {
         foreground(command);
     }
-    printf("%s\n", command);
+	
 	if (strncmp("cd", command, 2) == 0) {
-		printf("cd to somewhere\n");
 		cd(command);
 	}
 
