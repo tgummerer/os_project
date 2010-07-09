@@ -19,7 +19,7 @@
 void internal (char command[])
 {
     if (strncmp("jobs", command, 4) == 0) {
-        show_proc_list();  
+        // show_proc_list();  
     }
 
     if (strncmp("bg", command, 2) == 0) {
