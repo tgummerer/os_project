@@ -25,7 +25,7 @@ int main (int args, char ** argv)
 	// Create Signalhandlers
 	sighandlers();
 
-	// Loop (nearly) forever
+	// Loop (nearly) forever break on "exit" command
 	for (;;) {
 		printf("$ ");
 
