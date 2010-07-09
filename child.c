@@ -21,34 +21,35 @@ char * element;
 
 // Executes a command, as a child process
 int child (char command []) {
-  int count=0;
+	int count=0;
 
-  // Execute internal commands
-  if (isInternal(command)) {
-    internal (command);
-    exit (0);
-  }
+	// Execute internal commands
+	if (isInternal(command)) {
+		internal (command);
+		exit (0);
+	}
 
-  element = strtok (command, sep);
-  while (element != NULL)
-  {
-    com[count] = element;
-    count++;
-    com[count] = NULL;
-    element = strtok (NULL, sep);
-  }
-  
-  // Execute command
-  execvp (com[0], com);
-  perror("Command was not found");
-  return EXIT_FAILURE;
+	element = strtok (command, sep);
+	while (element != NULL)
+	{
+		com[count] = element;
+		count++;
+		com[count] = NULL;
+		element = strtok (NULL, sep);
+	}
+
+	// Execute command
+	execvp (com[0], com);
+	perror("Command was not found");
+	return EXIT_FAILURE;
 }
 
 // Checks if the command is a internal command, which is executed by the shell directly
 // TODO: rewrite to get the commands from a array, or a configuration file
 int isInternal (char command[]) {
-  if (strncmp("jobs", command, 4) == 0 || strncmp("bg", command, 2) == 0 || strncmp("fg", command, 2) == 0 || strncmp("in", command, 2) == 0 || strncmp("out", command, 3) == 0)
-    return 1;
-  
-  return 0;
+	if (strncmp("jobs", command, 4) == 0 || strncmp("bg", command, 2) == 0 || strncmp("fg", command, 2) == 0 || strncmp("cd", command, 2) || strncmp("in", command, 2) == 0 || strncmp("out", command, 3) == 0)
+		return 1;
+
+	printf("not internal"); 
+	return 0;
 }
