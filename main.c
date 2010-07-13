@@ -15,7 +15,7 @@
 #include "child.h"
 #include "parent.h"
 #include "sighandlers.h"
-
+#include "commands.h"
 
 int main (int args, char ** argv)
 {
@@ -35,6 +35,8 @@ int main (int args, char ** argv)
 		// exit, if the command is exit
 		if (strcmp ("exit\n", command) == 0) {
 			break;
+		} else if (strncmp("cd", command, 2) == 0) {
+			cd(command); // Found in commands.h
 		}
 		else {
 			// fork to execute new program

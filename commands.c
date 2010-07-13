@@ -20,7 +20,8 @@
 
 
 // Executes internal command, implemented directly in the code
-// TODO: get commands out of a array, or a configuration file as in child.c  
+// TODO: get commands out of a array, or a configuration file as in child.c 
+// TODO: implement jobs, bg, foreground, cd 
 void internal (char command[])
 {
     if (strncmp("jobs", command, 4) == 0) {
@@ -35,10 +36,6 @@ void internal (char command[])
         foreground(command);
     }
 	
-	if (strncmp("cd", command, 2) == 0) {
-		cd(command);
-	}
-
     if (strncmp("in", command, 2) == 0) {
         in(command);
     }
@@ -60,6 +57,7 @@ void foreground (char command[])
     // Run process in foreground
 }
 
+// Is called from main.c
 void cd (char command[]) 
 {
 	char * directory;
@@ -69,9 +67,8 @@ void cd (char command[])
 
 	// The first argument is the directory, to which should be changed
 	directory = strtok(NULL, sep);
-	
 	if (chdir(directory) != 0) {
-		printf("Changing directory failed.\n");
+		perror("Change directory failed.\n");	
 	}
 }
 
