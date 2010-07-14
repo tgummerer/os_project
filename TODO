@@ -1,0 +1,4 @@
+-> add functions for running processes in the background
+	-> jobs
+	-> fg
+	-> bg
